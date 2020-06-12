@@ -94,16 +94,15 @@ float promedio(struct lista *L){
 
 int main(int argc, char const *argv[])
 {
-	struct lista *L = crear(); 
+	struct lista *L = constructor(); 
 	float media;
 	L=insertar(10,0,L);
 	L=insertar(20,1,L);
 	L=insertar(30,2,L);
 	L=insertar(40,3,L);
 	mostrar(L);
-	media = promedio();
-    
-	
+	media = promedio(L);
+    printf("el promedio de la lista es: %f \n",media);	
 	destructor(L); 
 	return 0;
 }
