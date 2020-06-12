@@ -1,20 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define long_max 200 //cantidad máxima de elementos en la lista
+#define long_max 200 
 
 struct lista { 
-	int arreglo[long_max]; //arreglo de elementos dentro de la lista
-	int ultimo; //indicador de la primera posición vacía
+	int arreglo[long_max]; 
+	int ultimo; 
 };
 
-struct lista *constructor(){ //función para crear una lista
+struct lista *constructor(){ 
 	struct lista * L=malloc(sizeof(struct lista)); 
 	L->ultimo=0; 
 	return L; 
 }
 
-void destructor(struct lista * L){ //función para destruir una lista
+void destructor(struct lista * L){ 
 	free(L);
 }
 
@@ -78,24 +78,32 @@ int recuperar(int p, struct lista *L){
 		return L->arreglo[p];
 	}
 }
+
+float promedio(struct lista *L){
+    int i,sumador = 0, divisor = 0;
+    float media;
+    for(i=0;i<L->ultimo;i++){
+        sumador = sumador + L->arreglo[i];
+        divisor++;
+    }
+    media = sumador/divisor;
+    return(media);
+}
+
+
+
 int main(int argc, char const *argv[])
 {
-	/* code */
-	struct lista *L; //declaramos la lista
-	L = constructor(); //creamos la lista, asignar memoria (instanciar)
-	//L=eliminar(0,L);
+	struct lista *L = crear(); 
+	float media;
 	L=insertar(10,0,L);
 	L=insertar(20,1,L);
 	L=insertar(30,2,L);
 	L=insertar(40,3,L);
 	mostrar(L);
-	L=eliminar(2,L);
-	mostrar(L);
-	localizar(30,L);
-	recuperar(-1,L);
-	//printf("%i\n",Lista1->arreglo[10]);
-	//printf("%i\n",Lista1->arreglo[20]);	
-	destructor(L); // liberamos memoria
-
+	media = promedio();
+    
+	
+	destructor(L); 
 	return 0;
 }
